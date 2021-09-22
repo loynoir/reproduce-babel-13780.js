@@ -1,0 +1,19 @@
+{
+  "name": "reproduce-babel-13780",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+  	"help": "echo 'After docker, ./INSTALL.sh; npm install; npm test'",
+    "container": "npm run help && sudo docker run -v $PWD:/path/to/app -w /path/to/app -it node:16 /bin/bash",
+    "prepare": "strace -f -e file -o file.log babel --config-file ./example.babel.config.json example.mjs",
+    "validate": "grep -v node_modules file.log | grep browserslist && echo FAIL && exit 1 || echo OK",
+    "test": "npm run prepare && npm run validate"
+  },
+  "author": "loynoir",
+  "license": "ISC",
+  "dependencies": {
+    "@babel/cli": "^7.15.7",
+    "@babel/preset-env": "^7.15.6"
+  }
+}

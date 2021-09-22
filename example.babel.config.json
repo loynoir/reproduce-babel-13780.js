@@ -1,0 +1,14 @@
+{
+  "presets": [
+    [
+      "@babel/preset-env",
+      {
+        "debug": true,
+        "ignoreBrowserslistConfig": true,
+        "targets": {
+          "chrome": "92"
+        }
+      }
+    ]
+  ]
+}
